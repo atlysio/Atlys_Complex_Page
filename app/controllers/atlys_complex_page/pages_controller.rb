@@ -16,7 +16,7 @@ module AtlysComplexPage
 
     # GET /pages/new
     def new
-      @page = Page.new
+
     end
 
     # GET /pages/1/edit
@@ -25,13 +25,17 @@ module AtlysComplexPage
 
     # POST /pages
     def create
-      @page = Page.new(page_params)
+      @layout = { "layouts": [{ "origin": "html", "inner": [{ "html": params["html"], "css": params["css"], "javascript": params["javascript"] }] }] }
 
-      if @page.save
-        redirect_to @page, notice: 'Page was successfully created.'
-      else
-        render :new
-      end
+      @page = Page.new
+      @page.json_layout = @layout
+      @page.title = params["title"]
+      @page.page_url = params["page_url"]
+      @page.fromuser = current_user.id
+      @page.save!
+      @render_to ="/page/#{@page.page_url}"
+
+      redirect_to @render_to
     end
 
     # PATCH/PUT /pages/1
