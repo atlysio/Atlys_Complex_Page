@@ -1,13 +1,13 @@
 <style>
-<%= css.html_safe %>
+<%= URI.decode(css).html_safe %>
 </style>
 
 
 
-<%= html.html_safe %>
+<%= URI.decode(html).html_safe %>
 
 
 
 <script>
-<%= javascript.html_safe %>
+<%= URI.decode(javascript).html_safe %>
 </script>
