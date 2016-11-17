@@ -5,8 +5,6 @@
 
 
 
-
-
 <%= form_tag create_complex_page_path do %>
 
 
@@ -58,25 +56,16 @@
 
 
 <script>
+editor("htmledit", "html";
+editor("cssedit", "css");
+editor("javascriptedit", "javascript");
 
-
-editor("htmledit");
-editor("cssedit");
-editor("javascriptedit");
-
-
-function editor(id)
+function editor(id, mode)
 {
     CodeMirror.fromTextArea(document.getElementById(id), {
-        height: "350px",
-        parserfile: "parsexml.js",
-        stylesheet: "css/xmlcolors.css",
-        path: "js/",
-        continuousScanning: 500,
-        lineNumbers: true
+        lineNumbers: true,
+        mode: mode
     });
 }
-
-
 </script>
 
