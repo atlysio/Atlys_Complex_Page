@@ -25,7 +25,7 @@ module AtlysComplexPage
 
     # POST /pages
     def create
-      @layout = { "layouts": [{ "origin": "html", "inner": [{ "html": params["html"], "css": params["css"], "javascript": params["javascript"] }] }] }
+      @layout = { "layouts": [{ "origin": "html", "inner": [{ "html": URI.encode(params["html"]), "css": URI.encode(params["css"]), "javascript": URI.encode(params["javascript"]) }] }] }
 
       @page = Page.new
       @page.json_layout = @layout
