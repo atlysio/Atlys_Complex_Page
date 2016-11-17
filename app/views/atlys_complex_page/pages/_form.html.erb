@@ -1,17 +1,82 @@
-<%= form_for(@page) do |f| %>
-  <% if @page.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+<link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
+<script src="https://codemirror.net/lib/codemirror.js"></script>
 
-      <ul>
-      <% @page.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+<script src="https://codemirror.net/mode/css/css.js"></script>
+
+
+
+
+
+<%= form_tag create_complex_page do %>
+
+
+
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#html">HTML</a></li>
+        <li class="tab col s3"><a href="#css">CSS</a></li>
+        <li class="tab col s3"><a href="#javascript">JAVASCRIPT</a></li>
+        <li class="tab col s3"><a href="#preview">Preview</a></li>
       </ul>
     </div>
-  <% end %>
+
+<div id="html" class="col s12">
+
+	<textarea id="htmledit" name="html"></textarea>
+
+</div>
+
+<div id="css" class="col s12">
+
+	<textarea id="cssedit" name="css"></textarea>
+
+</div>
+
+<div id="javascript" class="col s12">
+
+	<textarea id="javascriptedit" name="javascript"></textarea>
+
+</div>
+
+<div id="preview" class="col s12">
+
+
+</div>
+
+</div>
+
+
+
 
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag "Create", class: 'btn' %>
   </div>
 <% end %>
+
+
+
+
+<script>
+
+
+editor("htmledit");
+editor("cssedit");
+editor("javascriptedit");
+
+
+function editor(id)
+{
+    CodeMirror.fromTextArea(document.getElementById(id), {
+        height: "350px",
+        parserfile: "parsexml.js",
+        stylesheet: "css/xmlcolors.css",
+        path: "js/",
+        continuousScanning: 500,
+        lineNumbers: true
+    });
+}
+
+
+</script>
+
